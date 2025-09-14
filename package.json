@@ -16,6 +16,7 @@
     "demo-audit": "dotenv -e .env -- tsx scripts/demo-audit-selection.ts",
     "fix-data": "dotenv -e .env -- tsx scripts/fix-data-structure.ts",
     "auto-fix-data": "dotenv -e .env -- tsx scripts/auto-fix-data.ts",
+    "check-questions": "dotenv -e .env -- tsx scripts/check-questions.ts",
     "test": "jest",
     "lint": "eslint . --ext .ts,.js",
     "type-check": "tsc --noEmit"

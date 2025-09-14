@@ -226,6 +226,22 @@ export class DatabaseService {
     };
   }
 
+  static async getQuestionCountsForPrinciples(principleIds: string[]): Promise<Record<string, number>> {
+    const { data: questions, error } = await supabase
+      .from('questions')
+      .select('principle_id')
+      .in('principle_id', principleIds);
+
+    if (error) {
+      throw new Error(`Failed to fetch question counts: ${error.message}`);
+    }
+
+    return questions.reduce((acc, q) => {
+      acc[q.principle_id] = (acc[q.principle_id] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>);
+  }
+
   // Type conversion helpers
   private static dbPrincipleToApiPrinciple(dbPrinciple: DbPrinciple): Principle {
     return {

@@ -178,6 +178,8 @@ Requirements for each question:
 - Exactly 4 answer options (A, B, C, D)
 - Only 1 correct answer
 - 3 plausible but incorrect options
+- IMPORTANT: Randomize the position of the correct answer (don't always put it first!)
+- The correctAnswer index should vary between 0, 1, 2, and 3 across questions
 - Optional brief explanation of the correct answer
 - Must reference the correct principle ID
 
@@ -198,7 +200,7 @@ Make sure the incorrect options are believable but clearly wrong to someone who 
   }
 
   private static validateQuestions(questions: OpenAIQuestionData[]): OpenAIQuestionData[] {
-    return questions.filter(question => {
+    const validQuestions = questions.filter(question => {
       // Validate question structure
       if (!question.question || typeof question.question !== 'string') {
         console.warn('Invalid question text:', question);
@@ -230,22 +232,69 @@ Make sure the incorrect options are believable but clearly wrong to someone who 
 
       return true;
     });
+
+    // Shuffle answer positions to prevent all correct answers being at position A
+    return validQuestions.map(question => this.shuffleAnswerPosition(question));
+  }
+
+  private static shuffleAnswerPosition(question: OpenAIQuestionData): OpenAIQuestionData {
+    // If correct answer is already not in position 0, randomly decide whether to shuffle
+    if (question.correctAnswer !== 0 && Math.random() > 0.3) {
+      return question; // Keep as is 70% of the time if not position A
+    }
+
+    // Generate a random position for the correct answer
+    const newCorrectIndex = Math.floor(Math.random() * 4);
+    
+    // If it's already in the right position, return as is
+    if (newCorrectIndex === question.correctAnswer) {
+      return question;
+    }
+
+    // Create new options array with shuffled positions
+    const newOptions = [...question.options];
+    const correctOption = newOptions[question.correctAnswer];
+    const targetOption = newOptions[newCorrectIndex];
+
+    // Swap the correct answer to the new position
+    newOptions[question.correctAnswer] = targetOption;
+    newOptions[newCorrectIndex] = correctOption;
+
+    return {
+      ...question,
+      options: newOptions,
+      correctAnswer: newCorrectIndex
+    };
   }
 
   // Generate fallback questions if OpenAI fails
   static generateFallbackQuestions(principles: Principle[]): OpenAIQuestionData[] {
-    return principles.map(principle => ({
-      question: `What is the main idea behind ${principle.title}?`,
-      options: [
+    return principles.map(principle => {
+      const options = [
         principle.oneLiner,
         "Users prefer complex interfaces with many options",
         "Design should always prioritize aesthetics over functionality", 
         "All users behave exactly the same way"
-      ],
-      correctAnswer: 0,
-      explanation: `The correct answer reflects the core concept: "${principle.oneLiner}"`,
-      principleId: principle.id
-    }));
+      ];
+      
+      // Randomize the position of the correct answer
+      const correctIndex = Math.floor(Math.random() * 4);
+      const correctAnswer = options[0]; // The principle's oneLiner
+      
+      // Swap to put correct answer at random position
+      if (correctIndex !== 0) {
+        options[0] = options[correctIndex];
+        options[correctIndex] = correctAnswer;
+      }
+
+      return {
+        question: `What is the main idea behind ${principle.title}?`,
+        options,
+        correctAnswer: correctIndex,
+        explanation: `The correct answer reflects the core concept: "${principle.oneLiner}"`,
+        principleId: principle.id
+      };
+    });
   }
 
   // Utility function to calculate estimated cost

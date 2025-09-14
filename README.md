@@ -88,6 +88,26 @@ npm run auto-fix-data
 # No user input required
 ```
 
+#### `npm run check-questions`
+**Quiz Question Assignment Checker**
+- Check which principles have quiz questions assigned
+- Interactive principle selection with multiple methods
+- **Selection Options**:
+  - Numbers: `"1,3,5"` or `"1-10"` or `"1,5-8,12"`
+  - Search: `"fitts"`, `"cognitive_bias"`, `"usability"`
+  - All principles: `"all"`
+- **Report Shows**:
+  - Question count per principle
+  - Principles without questions (❌)
+  - Principles with few questions (⚠️)
+  - Summary statistics
+
+```bash
+npm run check-questions
+# Interactive selection of principles to check
+# Displays question counts and identifies gaps
+```
+
 #### `npm run fix-data`
 **Interactive Data Structure Diagnostics**
 - Comprehensive structural quality analysis
@@ -188,6 +208,21 @@ npm run expand-questions
 
 # 3. Fix any remaining issues
 npm run auto-fix-data
+```
+
+### **Quiz Question Management**
+```bash
+# 1. Check which principles need questions
+npm run check-questions
+# Choose: All → See which have 0 questions
+
+# 2. Generate questions for principles lacking them
+npm run expand-questions
+# Target principles with 0 questions
+
+# 3. Verify questions were created
+npm run check-questions
+# Confirm all principles now have questions
 ```
 
 ## 📊 **Selection Syntax**
