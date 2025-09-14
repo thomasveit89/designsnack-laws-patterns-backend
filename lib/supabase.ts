@@ -75,6 +75,35 @@ export class DatabaseService {
     return this.dbPrincipleToApiPrinciple(data);
   }
 
+  // Update existing principle
+  static async updatePrinciple(id: string, updates: Partial<Omit<Principle, 'id'>>): Promise<Principle> {
+    const dbUpdates: Partial<Omit<DbPrinciple, 'id' | 'created_at' | 'updated_at'>> = {};
+    
+    if (updates.type) dbUpdates.type = updates.type;
+    if (updates.title) dbUpdates.title = updates.title;
+    if (updates.oneLiner) dbUpdates.one_liner = updates.oneLiner;
+    if (updates.definition) dbUpdates.definition = updates.definition;
+    if (updates.appliesWhen) dbUpdates.applies_when = updates.appliesWhen;
+    if (updates.do) dbUpdates.do_items = updates.do;
+    if (updates.dont) dbUpdates.dont_items = updates.dont;
+    if (updates.tags) dbUpdates.tags = updates.tags;
+    if (updates.category) dbUpdates.category = updates.category;
+    if (updates.sources) dbUpdates.sources = updates.sources;
+
+    const { data, error } = await supabaseAdmin
+      .from('principles')
+      .update(dbUpdates)
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) {
+      throw new Error(`Failed to update principle: ${error.message}`);
+    }
+
+    return this.dbPrincipleToApiPrinciple(data);
+  }
+
   // Questions CRUD operations
   static async getQuestions(filters?: {
     principleIds?: string[];

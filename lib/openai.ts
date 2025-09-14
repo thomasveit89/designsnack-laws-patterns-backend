@@ -7,6 +7,37 @@ const openai = new OpenAI({
 });
 
 export class OpenAIService {
+
+  static async generateCompletion(prompt: string, options: {
+    model?: string;
+    temperature?: number;
+    maxTokens?: number;
+  } = {}): Promise<any> {
+    if (!process.env.OPENAI_API_KEY) {
+      throw new Error('OpenAI API key is not configured');
+    }
+
+    const { model = 'gpt-4', temperature = 0.7, maxTokens = 2000 } = options;
+
+    try {
+      const completion = await openai.chat.completions.create({
+        model,
+        messages: [
+          {
+            role: 'user',
+            content: prompt
+          }
+        ],
+        temperature,
+        max_tokens: maxTokens,
+      });
+
+      return completion;
+    } catch (error) {
+      console.error('OpenAI completion failed:', error);
+      throw error;
+    }
+  }
   
   static async generateQuestions(
     principles: Principle[],

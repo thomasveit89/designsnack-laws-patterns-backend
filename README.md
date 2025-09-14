@@ -1,132 +1,286 @@
-# DESIGNSNACK Laws & Patterns - Backend API
+# DESIGNSNACK Laws & Patterns - AI-Powered Content Management System
 
-Production-ready backend service for the DESIGNSNACK Laws & Patterns mobile app. Provides secure AI-powered quiz generation, question management, and offline-first functionality.
-
-## 🏗️ Architecture
-
-- **Vercel Serverless Functions** - API endpoints
-- **Supabase PostgreSQL** - Database and real-time features
-- **OpenAI GPT-4** - AI-powered question generation
-- **TypeScript** - Type safety throughout
-
-## 📁 Project Structure
-
-```
-├── api/
-│   ├── quiz/
-│   │   ├── questions.ts      # Fetch quiz questions
-│   │   ├── generate.ts       # Generate new questions via AI
-│   │   └── sync.ts          # Sync questions to mobile app
-│   └── health.ts            # Health check endpoint
-├── lib/
-│   ├── types.ts             # Shared TypeScript interfaces
-│   ├── supabase.ts          # Database integration
-│   └── openai.ts            # AI question generation
-├── scripts/
-│   ├── seed-questions.ts    # Seed database with principles
-│   └── generate-questions.ts # Bulk question generation
-├── supabase/
-│   └── migrations/          # Database schema and functions
-└── package.json
-```
+Complete backend infrastructure for the DESIGNSNACK Laws & Patterns mobile app, featuring AI-powered content creation, quality auditing, and dynamic content management.
 
 ## 🚀 Quick Start
 
-### 1. Prerequisites
-
-- Node.js 18+
-- Vercel account
-- Supabase account
-- OpenAI API key
-
-### 2. Environment Setup
-
-Create accounts and get your credentials:
-
 ```bash
-# Vercel CLI
-npm i -g vercel
-
-# Login to Vercel
-vercel login
-```
-
-### 3. Database Setup
-
-1. Create a new Supabase project
-2. Run the migrations:
-   ```sql
-   -- Copy and run the contents of supabase/migrations/001_initial_schema.sql
-   -- Copy and run the contents of supabase/migrations/002_utility_functions.sql
-   ```
-
-### 4. Environment Variables
-
-Set these in your Vercel project:
-
-```bash
-# Required
-OPENAI_API_KEY=sk-...
-SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_ANON_KEY=eyJ...
-SUPABASE_SERVICE_ROLE_KEY=eyJ...
-
-# Optional
-NODE_ENV=production
-```
-
-### 5. Deploy
-
-```bash
-# Clone and install
-git clone https://github.com/thomasveit89/designsnack-laws-patterns-backend.git
-cd designsnack-laws-patterns-backend
+# Install dependencies
 npm install
 
-# Deploy to Vercel
-vercel --prod
+# Set up environment variables
+cp .env.example .env
+# Edit .env with your API keys
+
+# Test the system
+npm run test-api
 ```
 
-## 📊 API Endpoints
+## 📋 Available Commands
+
+### 🎨 **Content Creation**
+
+#### `npm run add-principle`
+**AI-Powered Principle Creation**
+- Interactive tool to create new UX principles with AI assistance
+- Generates comprehensive content including title, definition, examples, do/don't lists
+- Automatically validates against database schema
+- Option to generate quiz questions for new principles
+
+```bash
+npm run add-principle
+# Follow prompts to enter principle name (e.g., "Progressive Disclosure")
+# AI generates complete principle data
+# Review and confirm before saving to database
+```
+
+#### `npm run expand-questions`
+**AI Question Bank Expansion**
+- Generate additional quiz questions for existing principles
+- Interactive principle selection (by number, name search, or "all")
+- Configurable difficulty levels (easy, medium, hard)
+- Batch question generation with progress tracking
+
+```bash
+npm run expand-questions
+# Select principles to expand questions for
+# Choose difficulty and quantity
+# AI generates high-quality quiz questions
+```
+
+### 🔍 **Content Quality & Auditing**
+
+#### `npm run audit-content`
+**AI-Powered Content Quality Audit**
+- Comprehensive quality assessment of existing principles
+- **4 Selection Methods**:
+  1. All principles
+  2. Low quality only (score < 7/10)
+  3. Select specific principles (`"1,3,5"` or `"1-5"`)
+  4. Search by name/category (`"fitts"`, `"cognitive_bias"`)
+- **Two Audit Types**:
+  - Quick audit (quality scores only)
+  - Detailed audit (with AI improvement suggestions + option to save)
+- **Quality Checks**:
+  - Content clarity and educational value
+  - Structural completeness (missing fields, formatting)
+  - Category consistency and validation
+
+```bash
+npm run audit-content
+# Choose audit type and scope
+# Review quality reports
+# Optionally save AI-generated improvements
+```
+
+#### `npm run auto-fix-data`
+**Automatic Data Structure Fixes**
+- Automatically fixes common structural issues
+- **Fixes Applied**:
+  - Category formatting (e.g., "Cognitive Biases" → "decisions")
+  - Missing `appliesWhen` contexts
+  - Missing `tags`
+  - Category mapping to standard values (`usability`, `decisions`, `attention`, `memory`)
+
+```bash
+npm run auto-fix-data
+# Automatically scans and fixes structural issues
+# No user input required
+```
+
+#### `npm run fix-data`
+**Interactive Data Structure Diagnostics**
+- Comprehensive structural quality analysis
+- Shows detailed issues and suggested fixes
+- Interactive confirmation for applying fixes
+- Identifies manual improvements needed
+
+### 🧪 **Development & Testing**
+
+#### `npm run test-api`
+**System Health Check**
+- Tests database connection
+- Validates environment variables
+- Shows database statistics
+- Verifies API functionality
+
+#### `npm run test-principle`
+**Test Principle Creation**
+- Creates a test principle to verify database functionality
+- Shows complete creation workflow
+
+#### `npm run test-update`
+**Test Principle Updates**
+- Tests the principle update functionality
+- Verifies database update operations
+
+#### `npm run demo-audit`
+**Audit System Demo**
+- Shows available audit selection features
+- Displays principle categories and counts
+- Demonstrates search capabilities
+
+### 🚀 **Deployment**
+
+#### `npm run dev`
+**Local Development Server**
+- Starts Vercel development server
+- Enables local API testing
+- Hot reload for development
+
+#### `npm run deploy`
+**Production Deployment**
+- Deploys to Vercel production environment
+- Runs build process and optimizations
+
+### 🛠️ **Legacy Commands**
+
+#### `npm run seed`
+**Database Seeding**
+- Seeds database with initial question data
+- Sets up basic content structure
+
+#### `npm run generate`
+**Legacy Question Generation**
+- Original question generation script
+- Use `expand-questions` for better functionality
+
+## 🎯 **Common Workflows**
+
+### **Adding New UX Principles**
+```bash
+# 1. Create new principle with AI
+npm run add-principle
+
+# 2. Fix any structural issues
+npm run auto-fix-data
+
+# 3. Audit and improve quality
+npm run audit-content
+
+# 4. Generate quiz questions
+npm run expand-questions
+```
+
+### **Improving Content Quality**
+```bash
+# 1. Find low-quality principles
+npm run audit-content
+# Choose: Detailed audit → Low quality only
+
+# 2. Fix structural issues first
+npm run auto-fix-data
+
+# 3. Review and apply AI improvements
+npm run audit-content
+# Choose: Detailed audit → Specific principles
+```
+
+### **Bulk Content Management**
+```bash
+# 1. Audit all cognitive biases
+npm run audit-content
+# Choose: Detailed → Search → "cognitive_bias"
+
+# 2. Generate questions for multiple principles
+npm run expand-questions
+# Choose: Multiple selection → "1,5,10-15"
+
+# 3. Fix any remaining issues
+npm run auto-fix-data
+```
+
+## 📊 **Selection Syntax**
+
+### **Principle Selection Options**
+- **Single**: `"1"` (principle #1)
+- **Multiple**: `"1,3,5"` (principles #1, #3, #5)
+- **Ranges**: `"1-5"` (principles 1 through 5)
+- **Mixed**: `"1,3,7-10,15"` (principle #1, #3, range 7-10, and #15)
+- **All**: `"all"` (all principles)
+
+### **Search Terms**
+- **By name**: `"fitts"` → finds "Fitts's Law"
+- **By type**: `"cognitive_bias"` → finds all cognitive bias principles
+- **By category**: `"usability"` → finds all usability category principles
+- **Partial match**: `"heuristic"` → finds all heuristic-type principles
+
+## 🏗️ **Architecture**
+
+### **Tech Stack**
+- **Backend**: Vercel Serverless Functions (Node.js/TypeScript)
+- **Database**: Supabase (PostgreSQL with Row Level Security)
+- **AI**: OpenAI GPT-4 for content generation and quality assessment
+- **Mobile App**: React Native with Expo Router
+
+### **Data Flow**
+1. **Content Creation**: AI generates → Review → Save to Supabase
+2. **Mobile Sync**: App syncs content from API → Caches offline → Background updates
+3. **Quality Management**: Audit content → Apply improvements → Update database
+
+### **Database Schema**
+- **Principles**: Core UX principles with metadata
+- **Questions**: Quiz questions linked to principles
+- **Categories**: Standard categories (`usability`, `decisions`, `attention`, `memory`)
+- **Types**: Principle types (`ux_law`, `cognitive_bias`, `heuristic`)
+
+## 🔧 **Configuration**
+
+### **Environment Variables**
+```bash
+# Supabase Configuration
+SUPABASE_URL=your_supabase_url
+SUPABASE_ANON_KEY=your_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+
+# OpenAI Configuration
+OPENAI_API_KEY=your_openai_api_key
+
+# Development
+NODE_ENV=development
+```
+
+### **Content Standards**
+- **Categories**: `usability`, `decisions`, `attention`, `memory`
+- **Types**: `ux_law`, `cognitive_bias`, `heuristic`
+- **One-liner**: Max 100 characters
+- **Do/Don't items**: 3-4 items each (recommended)
+- **AppliesWhen**: 4 contextual scenarios
+- **Tags**: 2-4 relevant UX concepts
+
+## 📊 **API Endpoints**
 
 ### Health Check
 ```
 GET /api/health
 ```
 
-Returns service status and database statistics.
+### Get Principles
+```
+GET /api/principles
+```
+Returns all principles and categories with metadata.
 
 ### Get Quiz Questions
 ```
-GET /api/quiz/questions?principleIds=id1,id2&limit=10&difficulty=medium
 POST /api/quiz/questions
 ```
 
-**Parameters:**
-- `principleIds` (required): Comma-separated principle IDs
-- `limit` (optional): Number of questions (1-50, default: 10)
-- `difficulty` (optional): easy, medium, or hard
-- `excludeIds` (optional): Question IDs to exclude
-
-**Response:**
+**Body:**
 ```json
 {
-  "questions": [
-    {
-      "id": "uuid",
-      "principleId": "uuid",
-      "question": "What is Fitts' Law?",
-      "options": ["Option A", "Option B", "Option C", "Option D"],
-      "correctAnswer": 0,
-      "explanation": "Fitts' Law states...",
-      "difficulty": "medium",
-      "qualityScore": 8
-    }
-  ],
-  "totalAvailable": 50,
-  "success": true
+  "principleIds": ["uuid1", "uuid2"],
+  "limit": 10,
+  "difficulty": "medium",
+  "excludeIds": ["uuid3"]
 }
 ```
+
+### Sync Questions
+```
+POST /api/quiz/sync
+```
+Returns questions for offline sync to mobile apps.
 
 ### Generate New Questions
 ```
@@ -142,100 +296,54 @@ POST /api/quiz/generate
 }
 ```
 
-Generates new questions using AI and saves them to the database.
+## 📱 **Mobile App Integration**
 
-### Sync Questions
-```
-GET /api/quiz/sync?lastSync=2024-01-01T00:00:00Z&limit=100
-```
+The mobile app automatically:
+- ✅ Syncs new principles without app updates
+- ✅ Caches content for offline use
+- ✅ Updates questions dynamically
+- ✅ Handles content versioning
 
-Returns questions for offline sync to mobile apps.
+### **Update Your Mobile App**
 
-## 🛠️ Development
+Replace static JSON imports with dynamic API calls:
 
-### Local Development
+```typescript
+// Before: Static import
+import principlesData from './data/principles.json';
 
-```bash
-# Install dependencies
-npm install
-
-# Start local dev server
-npm run dev
-
-# The API will be available at http://localhost:3000/api/
+// After: Dynamic API
+import { ApiService } from './lib/api';
+const principles = await ApiService.getPrinciples();
 ```
 
-### Database Operations
+## 🎉 **Features**
 
-```bash
-# Seed database with principles from mobile app
-npm run seed
+### **AI-Powered Content Creation**
+- Generate comprehensive UX principles from simple prompts
+- Automatic categorization and tagging
+- Real-world examples and references
+- Professional definitions and guidance
 
-# Generate questions using AI
-npm run generate
+### **Quality Assurance**
+- Structural validation (missing fields, formatting)
+- Content quality scoring (1-10)
+- AI-powered improvement suggestions
+- Automated fixes for common issues
 
-# Generate with custom settings
-npm run generate -- --questions 10 --difficulty medium --dry-run
-```
+### **Flexible Management**
+- Surgical principle selection
+- Bulk operations support
+- Search and filter capabilities
+- Interactive confirmation workflows
 
-### Testing
+### **Production Ready**
+- Offline-first mobile app support
+- Scalable serverless architecture
+- Comprehensive error handling
+- Development and production environments
 
-```bash
-# Run tests
-npm test
-
-# Type checking
-npm run type-check
-
-# Linting
-npm run lint
-```
-
-## 🔧 Configuration
-
-### Question Generation Settings
-
-The generation script supports various options:
-
-```bash
-# Generate 5 questions per principle
-npm run generate -- --questions 5
-
-# Generate only medium difficulty
-npm run generate -- --difficulty medium
-
-# Use smaller batches (better for rate limits)
-npm run generate -- --batch-size 2
-
-# Preview without generating
-npm run generate -- --dry-run
-```
-
-### Database Optimization
-
-The system includes several performance optimizations:
-
-- **Random question selection** using database functions
-- **Quality scoring** to prioritize better questions
-- **Efficient indexing** for fast queries
-- **Cleanup functions** to remove low-quality content
-
-## 💰 Cost Management
-
-### OpenAI Usage
-
-- **Estimated cost per principle**: ~$0.02-0.05
-- **Total for 20 principles**: ~$1-2 for full question bank
-- **One-time generation** eliminates per-user costs
-
-### Optimization Strategies
-
-1. **Pre-generate questions** in bulk during off-peak hours
-2. **Cache aggressively** to avoid API calls during app usage
-3. **Use fallback questions** when API limits are reached
-4. **Quality filtering** to ensure value for money
-
-## 🔒 Security
+## 🔒 **Security**
 
 - **API keys secured** on Vercel (not in mobile app)
 - **Row Level Security** enabled on Supabase
@@ -243,56 +351,20 @@ The system includes several performance optimizations:
 - **Rate limiting** built into OpenAI service
 - **Input validation** on all endpoints
 
-## 📱 Mobile App Integration
+## 💰 **Cost Management**
 
-### Update Your Mobile App
+### **OpenAI Usage**
+- **Estimated cost per principle**: ~$0.02-0.05
+- **Total for 22 principles**: ~$1-2 for full content generation
+- **One-time generation** eliminates per-user costs
 
-1. **Remove direct OpenAI integration**:
-   ```bash
-   rm src/lib/openai.ts
-   ```
+## 🚨 **Troubleshooting**
 
-2. **Add API client**:
-   ```typescript
-   // src/lib/api.ts
-   const API_BASE_URL = 'https://your-backend.vercel.app';
-   
-   export async function fetchQuizQuestions(principleIds: string[]) {
-     const response = await fetch(`${API_BASE_URL}/api/quiz/questions`, {
-       method: 'POST',
-       headers: { 'Content-Type': 'application/json' },
-       body: JSON.stringify({ principleIds, limit: 10 })
-     });
-     return response.json();
-   }
-   ```
+### **Common Issues**
 
-3. **Update quiz store** to use the new API
-4. **Add offline caching** for better UX
-
-## 📈 Monitoring
-
-### Health Monitoring
-
-Check your API health:
-```bash
-curl https://your-backend.vercel.app/api/health
-```
-
-### Database Analytics
-
-Access the `question_analytics` view in Supabase for insights:
-```sql
-SELECT * FROM question_analytics ORDER BY question_count DESC;
-```
-
-### Vercel Analytics
-
-Monitor performance and usage in the Vercel dashboard.
-
-## 🚨 Troubleshooting
-
-### Common Issues
+**Environment Variables Not Loading**
+- Use `dotenv -e .env -- tsx script.ts` format
+- Verify all required environment variables are set
 
 **Database Connection Failed**
 - Verify Supabase environment variables
@@ -304,32 +376,24 @@ Monitor performance and usage in the Vercel dashboard.
 - Check rate limits (especially for free tier)
 - Review request formatting in logs
 
-**Questions Not Generating**
-- Run `npm run generate -- --dry-run` to test
-- Check OpenAI API key permissions
-- Verify database can accept new records
-
-### Debug Mode
-
-Enable verbose logging by setting:
+### **Debug Mode**
+Enable verbose logging:
 ```bash
-DEBUG=1 npm run generate
+DEBUG=1 npm run [command]
 ```
 
-## 🤝 Contributing
+## 🤝 **Contributing**
 
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
-4. Test thoroughly
+4. Test thoroughly with `npm run test-api`
 5. Submit a pull request
 
-## 📄 License
+## 📄 **License**
 
 MIT License - see LICENSE file for details.
 
-## 🔗 Related Projects
+---
 
-- [Mobile App](https://github.com/thomasveit89/designsnack-laws-patterns) - React Native app
-- [Supabase](https://supabase.com/) - Database and authentication
-- [Vercel](https://vercel.com/) - Serverless deployment
+**Built with ❤️ for UX education and powered by AI**
