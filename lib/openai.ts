@@ -238,25 +238,20 @@ Make sure the incorrect options are believable but clearly wrong to someone who 
   }
 
   private static shuffleAnswerPosition(question: OpenAIQuestionData): OpenAIQuestionData {
-    // If correct answer is already not in position 0, randomly decide whether to shuffle
-    if (question.correctAnswer !== 0 && Math.random() > 0.3) {
-      return question; // Keep as is 70% of the time if not position A
-    }
-
-    // Generate a random position for the correct answer
+    // Always randomize the correct answer position to ensure even distribution
     const newCorrectIndex = Math.floor(Math.random() * 4);
-    
-    // If it's already in the right position, return as is
+
+    // If it's already in the target position, return as is
     if (newCorrectIndex === question.correctAnswer) {
       return question;
     }
 
-    // Create new options array with shuffled positions
+    // Create new options array and swap positions
     const newOptions = [...question.options];
     const correctOption = newOptions[question.correctAnswer];
     const targetOption = newOptions[newCorrectIndex];
 
-    // Swap the correct answer to the new position
+    // Swap the correct answer to the new random position
     newOptions[question.correctAnswer] = targetOption;
     newOptions[newCorrectIndex] = correctOption;
 
