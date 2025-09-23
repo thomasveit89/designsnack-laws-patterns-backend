@@ -70,7 +70,7 @@ function checkStructuralQuality(principle: any): string[] {
   }
   
   // Check for proper category values
-  const validCategories = ['usability', 'decisions', 'attention', 'memory'];
+  const validCategories = ['usability', 'decisions', 'attention', 'memory', 'persuasion', 'visual'];
   if (principle.category && !validCategories.includes(principle.category.toLowerCase())) {
     const suggestion = getSuggestedCategory(principle.category, principle.type);
     issues.push(`Invalid category "${principle.category}" → suggested: "${suggestion}"`);

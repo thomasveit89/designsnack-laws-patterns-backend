@@ -1,0 +1,38 @@
+Planning Fallacy
+People consistently underestimate the time, resources, and effort required for tasks
+
+Provide Exit Points
+Strategic placement of departure options helps users feel in control and reduces anxiety
+
+Sensory Appeal
+Designs that engage multiple senses create stronger emotional connections with users
+
+Endowment Effect
+Users assign greater value to items they own or perceive as belonging to them
+
+Chunking
+Information grouped into smaller, related sets is easier for users to process and remember
+
+Picture Superiority Effect
+Visual information is processed faster and remembered more effectively than text alone
+
+Method of Loci
+Associating information with specific locations improves recall and learning retention
+
+Shaping
+Gradually guiding user behavior through progressive reinforcement of desired actions
+
+Delighters
+Unexpected positive experiences create memorable moments that exceed user expectations
+
+Internal Trigger
+Emotional states and memories that prompt users to engage with products or services
+
+Storytelling Effect
+Information presented in narrative form is more engaging and memorable than isolated facts
+
+Negativity Bias
+Users give disproportionate weight to negative experiences and information
+
+Spacing Effect
+Learning and retention improve when practice sessions are distributed over time rather than massed

@@ -1,0 +1,236 @@
+Cognitive Load
+The mental processing power required to understand and interact with an interface
+
+Attentional Bias
+Users unconsciously focus on information that aligns with their current thoughts and concerns
+
+Empathy Gap
+The tendency to underestimate how emotions will influence decision-making processes
+
+Visual Anchors
+Design elements strategically placed to direct user attention and guide visual flow
+
+Visual Hierarchy
+The arrangement of design elements to communicate their relative importance and reading order
+
+Selective Attention
+Users naturally filter information, focusing only on elements relevant to their current goals
+
+Survivorship Bias
+The logical error of focusing only on successful outcomes while ignoring failures
+
+Juxtaposition
+When design elements are positioned near each other, users perceive them as related
+
+Signifiers
+Visual or textual cues that indicate how users should interact with interface elements
+
+Contrast
+High visual difference between elements draws user attention and creates emphasis
+
+External Trigger
+Environmental cues that prompt users to take specific actions within an interface
+
+Decoy Effect
+Introducing a deliberately inferior option to make the preferred choice appear more attractive
+
+Centre-Stage Effect
+Users tend to select options positioned in the middle of a set when choices seem equivalent
+
+Framing
+The context and presentation method significantly influences how users interpret information
+
+Tesler's Law
+Complexity cannot be eliminated from a system, only shifted between different components
+
+Spark Effect
+Users are more motivated to complete tasks when the required effort appears minimal
+
+Feedback Loop
+Immediate system responses help users understand the consequences of their actions
+
+Expectations Bias
+Users' preconceived notions strongly influence how they perceive and interact with designs
+
+Aesthetic-Usability Effect
+Visually appealing designs are perceived as more usable, even when functionality is identical
+
+Social Proof
+Users look to the behavior and choices of others when making their own decisions
+
+Scarcity
+Items perceived as rare or limited become more desirable and valuable to users
+
+Curiosity Gap
+The psychological need to fill information gaps motivates users to seek additional content
+
+Mental Model
+Users approach new interfaces with existing assumptions about how things should work
+
+Familiarity Bias
+Users prefer interfaces and interactions that match their previous experiences
+
+Halo Effect
+Initial positive impressions of one aspect influence perception of other unrelated features
+
+Unit Bias
+Single servings or portions feel like the natural and appropriate amount to users
+
+Flow State
+The optimal experience where users become fully absorbed in task completion
+
+Skeuomorphism
+Digital interfaces that mimic real-world objects help users understand functionality
+
+Reciprocity
+Users feel obligated to return favors or respond positively to gifts and helpful gestures
+
+Authority Bias
+Information and recommendations from perceived experts carry disproportionate influence
+
+Pseudo-Set Framing
+Tasks presented as part of a collection appear more compelling and worth completing
+
+Variable Reward
+Unpredictable positive outcomes create stronger motivation than consistent rewards
+
+Cheerleader Effect
+Individual items appear more attractive when displayed alongside similar items
+
+Curse of Knowledge
+Designers overestimate users' understanding due to their own deep product knowledge
+
+Aha! Moment
+The specific instant when users first understand and appreciate a product's core value
+
+Self-Initiated Triggers
+User-controlled prompts and reminders are more effective than system-generated ones
+
+Survey Bias
+Respondents modify their answers to appear more socially acceptable or desirable
+
+Cognitive Dissonance
+Mental discomfort arises when users encounter conflicting beliefs or information
+
+Goal Gradient Effect
+Users become increasingly motivated as they perceive progress toward objective completion
+
+Feedforward
+Providing users with preview information about outcomes before they take action
+
+Occam's Razor
+The simplest solution that solves the problem is typically the most effective approach
+
+Noble Edge Effect
+Users prefer brands and products that demonstrate social responsibility and ethical values
+
+Hindsight Bias
+People overestimate their ability to have predicted outcomes after learning the results
+
+Law of Similarity
+Users group and associate design elements that share visual characteristics
+
+Law of Prägnanz
+Users interpret ambiguous or complex visuals in the simplest, most organized way possible
+
+Spotlight Effect
+Users overestimate how much attention others pay to their actions and appearance
+
+Fresh Start Effect
+Temporal landmarks and new beginnings increase motivation for behavioral change
+
+Labor Illusion
+Users value products and services more when they can observe the work involved
+
+Default Bias
+Users tend to accept pre-selected options rather than making active choices
+
+Investment Loops
+Users who contribute time, effort, or content to a product become more likely to return
+
+Commitment & Consistency
+Users strive to align their actions with previously stated beliefs and commitments
+
+Decision Fatigue
+Making numerous choices depletes mental energy and degrades decision quality
+
+Reactance
+Users resist or reject options when they feel their freedom of choice is threatened
+
+Observer-Expectancy Effect
+Researcher expectations can unconsciously influence participant behavior in studies
+
+Weber's Law
+Users adapt more easily to gradual changes than dramatic interface modifications
+
+Law of the Instrument
+Over-reliance on familiar tools can limit creative problem-solving approaches
+
+Temptation Coupling
+Pairing difficult tasks with enjoyable activities increases completion likelihood
+
+Affect Heuristic
+Current emotional states significantly influence judgment and decision-making processes
+
+Hyperbolic Discounting
+Users consistently overvalue immediate benefits compared to larger future rewards
+
+Cashless Effect
+Digital payment methods reduce the psychological pain associated with spending money
+
+Self-serving Bias
+Users attribute positive outcomes to their abilities and negative outcomes to external factors
+
+Discoverability
+The ease with which users can find and access important features within an interface
+
+Backfire Effect
+Presenting contradictory evidence can actually strengthen users' existing beliefs
+
+False Consensus Effect
+Users overestimate how many other people share their opinions and preferences
+
+Barnum-Forer Effect
+Users accept vague, general statements as personally meaningful and specifically accurate
+
+IKEA Effect
+Users place higher value on products they helped create or customize themselves
+
+Planning Fallacy
+People consistently underestimate the time, resources, and effort required for tasks
+
+Provide Exit Points
+Strategic placement of departure options helps users feel in control and reduces anxiety
+
+Sensory Appeal
+Designs that engage multiple senses create stronger emotional connections with users
+
+Endowment Effect
+Users assign greater value to items they own or perceive as belonging to them
+
+Chunking
+Information grouped into smaller, related sets is easier for users to process and remember
+
+Picture Superiority Effect
+Visual information is processed faster and remembered more effectively than text alone
+
+Method of Loci
+Associating information with specific locations improves recall and learning retention
+
+Shaping
+Gradually guiding user behavior through progressive reinforcement of desired actions
+
+Delighters
+Unexpected positive experiences create memorable moments that exceed user expectations
+
+Internal Trigger
+Emotional states and memories that prompt users to engage with products or services
+
+Storytelling Effect
+Information presented in narrative form is more engaging and memorable than isolated facts
+
+Negativity Bias
+Users give disproportionate weight to negative experiences and information
+
+Spacing Effect
+Learning and retention improve when practice sessions are distributed over time rather than massed

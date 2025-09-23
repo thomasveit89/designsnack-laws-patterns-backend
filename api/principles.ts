@@ -80,8 +80,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 // Helper function to get category icons
 function getCategoryIcon(categoryName: string): string {
   const iconMap: Record<string, string> = {
+    // Current database categories
+    'attention': '👀',
+    'decisions': '🎯',
+    'memory': '💭',
+    'usability': '🚀',
+
+    // Legacy categories (for backwards compatibility)
     'Cognitive Biases': '🧠',
-    'Design Heuristics': '🎨', 
+    'Design Heuristics': '🎨',
     'Usability Principles': '👆',
     'Visual Design': '👁️',
     'Information Architecture': '🏗️',
@@ -92,5 +99,5 @@ function getCategoryIcon(categoryName: string): string {
     'Business': '💼'
   };
 
-  return iconMap[categoryName] || '📋';
+  return iconMap[categoryName] || '📚';
 }

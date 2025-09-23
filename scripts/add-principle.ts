@@ -57,7 +57,7 @@ Please provide a detailed response in the following JSON format:
   "type": "ux_law" | "cognitive_bias" | "heuristic",
   "oneLiner": "One sentence summary (max 100 chars)",
   "definition": "Clear 2-3 sentence definition explaining what it is",
-  "category": "usability" | "decisions" | "attention" | "memory",
+  "category": "usability" | "decisions" | "attention" | "memory" | "persuasion" | "visual",
   "appliesWhen": [
     "context1",
     "context2", 
@@ -96,9 +96,9 @@ Guidelines:
 - appliesWhen should be short contexts where this principle matters (like "buttons", "menus", "forms")
 - Keep oneLiner under 100 characters
 - Example caption should be concrete and specific (like "Netflix uses thumbnails sized proportionally to viewing distance")
-- Tags should be relevant UX/design concepts (like "interaction", "usability", "mobile")
+- Tags should be relevant UX/design concepts using lowercase-with-hyphens format (like "user-interaction", "mobile-design", "cognitive-bias")
 - Sources should be URLs or "Book Title by Author" format
-- Categories should be: "usability", "decisions", "attention", or "memory"`;
+- Categories should be: "attention" (visual hierarchy, contrast), "memory" (chunking, recall), "decisions" (biases, heuristics), "usability" (interfaces, interactions), "persuasion" (scarcity, social proof), or "visual" (aesthetic principles)`;
 
   try {
     const completion = await OpenAIService.generateCompletion(prompt, {
