@@ -1,74 +1,46 @@
 #!/usr/bin/env tsx
 
-/**
- * API Testing Script
- */
-
+// Load environment variables FIRST before any imports (same as add-principle.ts)
 import dotenv from 'dotenv';
 dotenv.config();
 
-import { DatabaseService } from '../lib/supabase';
+import { OpenAIService } from '../lib/openai';
 
-async function main() {
-  console.log('🧪 Testing API functionality...\n');
+async function testAPI() {
+  console.log('🔍 Testing the exact same flow as add-principle script\n');
 
   try {
-    // Test 1: Database Connection
-    console.log('1️⃣ Testing database connection...');
-    const principles = await DatabaseService.getPrinciples();
-    console.log(`   ✅ Database connected! Found ${principles.length} principles`);
-    
-    if (principles.length > 0) {
-      console.log(`   📋 Sample principle: "${principles[0].title}"`);
-    }
+    console.log('Environment check:');
+    console.log('OPENAI_API_KEY:', process.env.OPENAI_API_KEY ? 'Present' : 'Missing');
+    console.log('Key preview:', process.env.OPENAI_API_KEY?.slice(0, 20) + '...');
 
-    // Test 2: Question Statistics
-    console.log('\n2️⃣ Testing database statistics...');
-    const stats = await DatabaseService.getQuestionStats();
-    console.log(`   📊 Total questions: ${stats.totalQuestions}`);
-    console.log(`   📈 Average quality: ${stats.averageQualityScore}`);
-    console.log(`   📈 Questions by difficulty:`, stats.questionsByDifficulty);
+    console.log('\n🤖 Testing generateCompletion (principle creation)...');
 
-    // Test 3: Get Random Questions (should be empty for now)
-    console.log('\n3️⃣ Testing random question selection...');
-    const principleIds = principles.slice(0, 3).map(p => p.id);
-    const randomQuestions = await DatabaseService.getRandomQuestions(principleIds, 5);
-    console.log(`   🎲 Random questions found: ${randomQuestions.length}`);
+    const testPrompt = `You are an expert UX designer and educator. Create a comprehensive UX principle entry based on this input: "Fitts Law"
 
-    if (randomQuestions.length === 0) {
-      console.log(`   ℹ️  No questions yet - this is expected before generation`);
-    }
+Please provide a detailed response in the following JSON format:
+{
+  "title": "Official Principle Name",
+  "type": "ux_law",
+  "oneLiner": "One sentence summary (max 100 chars)",
+  "definition": "Clear 2-3 sentence definition explaining what it is"
+}`;
 
-    // Test 4: Environment Variables
-    console.log('\n4️⃣ Testing environment configuration...');
-    const envCheck = {
-      supabaseUrl: !!process.env.SUPABASE_URL,
-      supabaseAnon: !!process.env.SUPABASE_ANON_KEY,
-      supabaseService: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
-      openaiKey: !!process.env.OPENAI_API_KEY
-    };
-    console.log('   🔑 Environment variables:', envCheck);
-    
-    const allEnvPresent = Object.values(envCheck).every(Boolean);
-    console.log(`   ${allEnvPresent ? '✅' : '❌'} All required environment variables present`);
+    const completion = await OpenAIService.generateCompletion(testPrompt, {
+      model: 'gpt-4',
+      temperature: 0.7,
+      maxTokens: 500
+    });
 
-    console.log('\n🎉 API tests completed successfully!');
-    console.log('\n📋 Summary:');
-    console.log(`   • Database: Connected (${principles.length} principles)`);
-    console.log(`   • Questions: ${stats.totalQuestions} (ready for generation)`);
-    console.log(`   • Environment: ${allEnvPresent ? 'Configured' : 'Missing variables'}`);
-    
-    if (allEnvPresent && principles.length > 0) {
-      console.log('\n✨ Ready to generate questions with AI!');
-    }
+    console.log('✅ generateCompletion SUCCESS');
+    console.log('Response preview:', completion.choices[0]?.message?.content?.slice(0, 100) + '...');
 
   } catch (error) {
-    console.error('\n❌ API test failed:', error);
-    process.exit(1);
+    console.error('❌ Error occurred:', error);
+    if (error instanceof Error) {
+      console.error('Message:', error.message);
+    }
   }
 }
 
-// Run the test
-if (require.main === module) {
-  main().catch(console.error);
-}
+testAPI().catch(console.error);
